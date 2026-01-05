@@ -4,7 +4,7 @@ import { SKILLS } from '../constants';
 import { 
   Code, Cpu, Globe, Terminal, Database, Layout, Wrench,
   BookOpen, Container, Workflow, TableProperties, Aperture,
-  Figma, BrainCircuit, Activity
+  BrainCircuit, Activity
 } from 'lucide-react';
 
 const Skills: React.FC = () => {
@@ -36,7 +36,7 @@ const Skills: React.FC = () => {
       case 'n8n': 
         return <Workflow size={28} className="text-[#EA4B71]" />; // n8n Red/Pink
       case 'Visual Studio Code': 
-        return <Figma size={28} className="text-[#F24E1E]" />; // VSCode Red-Orange
+        return <Code size={28} className="text-[#2b67ba]" />; // VSCode Sky blue
       case 'Pandas': 
         return <TableProperties size={28} className="text-[#2042a8] dark:text-indigo-400" />; // Pandas Blue
       case 'OpenCV': 
