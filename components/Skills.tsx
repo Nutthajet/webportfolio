@@ -35,8 +35,8 @@ const Skills: React.FC = () => {
         return <Container size={28} className="text-[#2496ED]" />; // Docker Blue
       case 'n8n': 
         return <Workflow size={28} className="text-[#EA4B71]" />; // n8n Red/Pink
-      case 'Figma': 
-        return <Figma size={28} className="text-[#F24E1E]" />; // Figma Red-Orange
+      case 'Visual Studio Code': 
+        return <Figma size={28} className="text-[#F24E1E]" />; // VSCode Red-Orange
       case 'Pandas': 
         return <TableProperties size={28} className="text-[#2042a8] dark:text-indigo-400" />; // Pandas Blue
       case 'OpenCV': 
