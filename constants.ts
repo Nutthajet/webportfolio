@@ -106,12 +106,12 @@ export const EXPERIENCES: Experience[] = [
   {
     id: "exp8",
     role: "Participated in the Robotics, AI, and Coding Camp (Talent RAC 2023)",
-    company: "High School Computer Project, Mahidol Wittayanusorn School",
-    period: "2024",
+    company: "Sirindhorn Science Home",
+    period: "2023",
     description: "Received training in core data science processes, including data preparation, modeling, and evaluation, with experience gained through project-based work and a conference paper publication.",
     technologies: ["Data Science", "Project", "Conference Paper"],
     type: "Project",
-    image: "/image/project.png"
+    image: "/image/rac.jpg"
   }
 ];
 
