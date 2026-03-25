@@ -1,10 +1,7 @@
 import { GoogleGenAI, GenerateContentResponse } from "@google/genai";
 import { PROFILE, EXPERIENCES, SKILLS, EDUCATION, PAPERS } from '../constants';
 
-// Initialize Gemini
-// NOTE: In a real production app, you should proxy this through a backend to hide the key.
-// Since this is a portfolio demo running client-side, we assume the env var is set.
-const apiKey = process.env.API_KEY || ''; 
+const apiKey = process.env.API_KEY || '';
 const ai = apiKey ? new GoogleGenAI({ apiKey }) : null;
 
 export const chatWithResume = async (userMessage: string): Promise<string> => {
@@ -34,11 +31,11 @@ ${contextData}
     const response: GenerateContentResponse = await ai.models.generateContent({
       model: 'gemini-2.5-flash',
       contents: [
-        { role: 'user', parts: [{ text: systemInstruction }] }, // Priming the context in the first turn for statelessness simplicity or use systemInstruction in config
+        { role: 'user', parts: [{ text: systemInstruction }] }, 
         { role: 'user', parts: [{ text: userMessage }] }
       ],
       config: {
-        systemInstruction: "You are a helpful portfolio assistant.", // Optional if context passed in prompt
+        systemInstruction: "You are a helpful portfolio assistant.",
         temperature: 0.7,
       }
     });
