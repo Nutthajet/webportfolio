@@ -5,17 +5,15 @@ import { GraduationCap, Calendar, Award, Building2 } from 'lucide-react';
 
 const Education: React.FC = () => {
   return (
-    <Section id="education" title="Education" subtitle="My academic background and achievements.">
+    <Section id="education" title="Education" subtitle="Academic background." className="bg-[#111111]">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {EDUCATION.map((edu) => (
           <div key={edu.id} className="group relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-primary-500/20 to-accent-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            
-            <div className="glass-panel p-6 rounded-2xl border border-slate-700/50 hover:border-primary-500/50 transition-all duration-300 relative flex flex-col h-full hover:-translate-y-1">
+            <div className="bg-[#171717] p-6 border border-stone-800 hover:border-stone-600 transition-colors relative flex flex-col h-full">
               
               <div className="flex items-start gap-4 mb-4">
                 {/* School Image / Logo Container */}
-                <div className="w-16 h-16 md:w-20 md:h-20 flex-shrink-0 rounded-xl bg-white p-2 overflow-hidden border-2 border-slate-600 group-hover:border-primary-500 transition-colors shadow-lg">
+                <div className="w-16 h-16 md:w-20 md:h-20 flex-shrink-0 bg-white p-2 overflow-hidden border border-stone-700 transition-colors shadow-lg">
                   {edu.image ? (
                     <img 
                       src={edu.image} 
@@ -28,7 +26,7 @@ const Education: React.FC = () => {
                       }}
                     />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-slate-100 rounded-lg">
+                    <div className="w-full h-full flex items-center justify-center bg-slate-100">
                       <Building2 className="text-slate-400 w-8 h-8" />
                     </div>
                   )}
@@ -37,38 +35,38 @@ const Education: React.FC = () => {
                 </div>
 
                 <div className="flex-1">
-                  <h3 className="text-xl font-bold text-white group-hover:text-primary-400 transition-colors leading-tight">
+                  <h3 className="text-xl font-semibold text-white group-hover:text-amber-200 transition-colors leading-tight">
                     {edu.institution}
                   </h3>
-                  <div className="flex items-center gap-2 text-sm text-slate-400 mt-2">
-                    <Calendar size={14} className="text-accent-400" />
+                  <div className="flex items-center gap-2 text-sm text-stone-400 mt-2">
+                    <Calendar size={14} className="text-emerald-300" />
                     <span className="font-mono">{edu.year}</span>
                   </div>
                 </div>
               </div>
 
-              <div className="space-y-3 pt-4 border-t border-slate-700/50 mt-auto">
+              <div className="space-y-3 pt-4 border-t border-stone-800 mt-auto">
                 <div className="flex items-start gap-3">
-                  <div className="p-1.5 bg-slate-800 rounded-lg text-primary-400 mt-0.5">
+                  <div className="p-1.5 bg-stone-950 text-amber-200 mt-0.5">
                     <GraduationCap size={16} />
                   </div>
                   <div>
-                    <span className="text-sm font-bold text-slate-200 block">Degree</span>
-                    <span className="text-sm text-slate-400 leading-relaxed">{edu.degree}</span>
+                    <span className="text-sm font-bold text-stone-200 block">Degree</span>
+                    <span className="text-sm text-stone-400 leading-relaxed">{edu.degree}</span>
                     {edu.details && (
-                      <span className="text-xs text-slate-500 block mt-1">{edu.details}</span>
+                      <span className="text-xs text-stone-500 block mt-1">{edu.details}</span>
                     )}
                   </div>
                 </div>
 
                 {edu.gpa && (
                   <div className="flex items-center gap-3">
-                    <div className="p-1.5 bg-slate-800 rounded-lg text-yellow-400">
+                    <div className="p-1.5 bg-stone-950 text-amber-200">
                       <Award size={16} />
                     </div>
                     <div>
-                      <span className="text-sm font-bold text-slate-200 mr-2">Grade</span>
-                      <span className="inline-block px-2 py-0.5 bg-yellow-500/10 border border-yellow-500/30 text-yellow-400 text-xs font-mono rounded font-bold">
+                      <span className="text-sm font-bold text-stone-200 mr-2">Grade</span>
+                      <span className="inline-block px-2 py-0.5 bg-amber-200/10 border border-amber-200/30 text-amber-200 text-xs font-mono font-bold">
                         {edu.gpa}
                       </span>
                     </div>

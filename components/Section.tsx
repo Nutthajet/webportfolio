@@ -6,30 +6,32 @@ interface SectionProps {
   subtitle?: string;
   children: React.ReactNode;
   className?: string;
+  dark?: boolean;
 }
 
-const Section: React.FC<SectionProps> = ({ id, title, subtitle, children, className = "" }) => {
+const Section: React.FC<SectionProps> = ({ id, title, subtitle, children, className = "", dark = true }) => {
+  const titleClassName = dark ? 'text-white' : 'text-stone-950';
+  const accentClassName = dark ? 'text-amber-200' : 'text-emerald-700';
+  const subtitleClassName = dark ? 'text-slate-400' : 'text-stone-600';
+  const dividerClassName = dark ? 'bg-amber-200/70' : 'bg-stone-400';
+
   return (
     <section id={id} className={`py-20 md:py-28 relative ${className}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-3 tracking-tight">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400">
-              {title}
-            </span>
-            <span className="text-primary-500">.</span>
+          <h2 className={`text-3xl md:text-4xl font-semibold mb-3 tracking-tight ${titleClassName}`}>
+            {title}
+            <span className={accentClassName}>.</span>
           </h2>
           {subtitle && (
-            <p className="text-slate-400 text-lg md:text-xl max-w-2xl font-light">
+            <p className={`text-base md:text-lg max-w-2xl leading-relaxed ${subtitleClassName}`}>
               {subtitle}
             </p>
           )}
-          <div className="h-1 w-20 bg-primary-500 mt-6 rounded-full opacity-80"></div>
+          <div className={`h-px w-24 mt-6 ${dividerClassName}`} />
         </div>
         {children}
       </div>
-      
-      {/* Decorative background elements can go here if needed, keeping it clean for now */}
     </section>
   );
 };

@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
-import { Download, ArrowRight, Github, Linkedin, Mail } from 'lucide-react';
+import { ArrowRight, Download, Github, Linkedin, Mail, MapPin, Sparkles } from 'lucide-react';
 import { PROFILE, SOCIALS } from '../constants';
 import ResumeModal from './ResumeModal';
+
+const HERO_STATS = [
+  { value: '14', label: 'Thai news sites' },
+  { value: '10k+', label: 'medical images' },
+  { value: '2', label: 'IEEE-linked papers' },
+];
 
 const About: React.FC = () => {
   const [isResumeOpen, setIsResumeOpen] = useState(false);
 
-  const getSocialUrl = (platform: string) => SOCIALS.find(s => s.platform === platform)?.url || '#';
+  const getSocialUrl = (platform: string) => SOCIALS.find((social) => social.platform === platform)?.url || '#';
 
   const scrollToContact = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -20,100 +26,113 @@ const About: React.FC = () => {
   };
 
   return (
-    <section id="about" className="min-h-screen flex items-center justify-center pt-20 relative overflow-hidden">
-      {/* Background Gradients */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary-600/20 rounded-full blur-[128px] pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent-500/10 rounded-full blur-[128px] pointer-events-none" />
+    <section id="about" className="min-h-screen flex items-center pt-24 pb-16 relative overflow-hidden bg-[linear-gradient(180deg,#111111_0%,#16140f_56%,#111827_100%)]">
+      <div className="absolute inset-0 opacity-[0.08] bg-[linear-gradient(#ffffff_1px,transparent_1px),linear-gradient(90deg,#ffffff_1px,transparent_1px)] bg-[size:44px_44px] pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-stone-500/40 to-transparent" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center z-10">
-        
-        {/* Text Content */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full grid grid-cols-1 lg:grid-cols-[1.08fr_0.92fr] gap-10 lg:gap-16 items-center z-10">
         <div className="space-y-8 order-2 lg:order-1">
-          <div className="space-y-2">
-            <span className="inline-block py-1 px-3 rounded-full bg-slate-800/80 border border-slate-700 text-primary-400 text-sm font-medium font-mono">
-              Available for Internship 2025
-            </span>
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white leading-tight">
-              Hello, I'm <br />
-              <span className="gradient-text">{PROFILE.name.split(' ')[0]}</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-slate-300 font-light">
-              {PROFILE.title}
-            </p>
+          <div className="space-y-5">
+            <div className="inline-flex items-center gap-2 border border-stone-700 bg-stone-950/70 px-3 py-1.5 text-xs font-mono uppercase tracking-[0.18em] text-stone-300">
+              <span className="h-2 w-2 bg-emerald-400" />
+              Open to AI engineering internships
+            </div>
+            <div className="space-y-3">
+              <h1 className="max-w-4xl text-4xl sm:text-5xl md:text-7xl font-semibold tracking-tight text-stone-50 leading-[0.95]">
+                Nutthajet Foythong
+              </h1>
+              <p className="max-w-2xl text-lg md:text-xl text-stone-300 leading-relaxed">
+                {PROFILE.title} focused on RAG, CV, NLP, and data products.
+              </p>
+            </div>
           </div>
 
-          <div className="space-y-4 max-w-xl">
-            <p className="text-slate-300 text-lg leading-relaxed">
+          <div className="max-w-2xl border-l border-amber-300/50 pl-5 space-y-4">
+            <p className="text-stone-300 text-base md:text-lg leading-relaxed">
               {PROFILE.about}
             </p>
-            <p className="text-slate-400 text-lg leading-relaxed">
+            <p className="text-stone-400 leading-relaxed">
               {PROFILE.tagline}
             </p>
           </div>
 
-          <div className="flex flex-wrap gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl">
+            {HERO_STATS.map(({ value, label }) => (
+              <div key={label} className="border border-stone-800 bg-stone-950/45 p-4">
+                <div className="font-mono text-2xl text-amber-200">{value}</div>
+                <div className="mt-1 text-xs leading-relaxed text-stone-400">{label}</div>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex flex-wrap gap-3">
             <a 
               href="#contact" 
               onClick={scrollToContact}
-              className="px-8 py-3 bg-primary-600 hover:bg-primary-500 text-white font-medium rounded-lg transition-all flex items-center gap-2 shadow-lg shadow-primary-500/20 cursor-pointer"
+              className="px-5 py-3 bg-amber-200 hover:bg-amber-100 text-stone-950 font-semibold transition-all flex items-center gap-2 cursor-pointer"
             >
-              Contact Me <ArrowRight size={18} />
+              Contact <ArrowRight size={18} />
             </a>
             <button 
               onClick={() => setIsResumeOpen(true)}
-              className="px-8 py-3 bg-slate-800 hover:bg-slate-700 text-white font-medium rounded-lg border border-slate-700 transition-all flex items-center gap-2 cursor-pointer"
+              className="px-5 py-3 bg-transparent hover:bg-stone-900 text-stone-100 font-medium border border-stone-700 transition-all flex items-center gap-2 cursor-pointer"
             >
-              Download Resume <Download size={18} />
+              View resume <Download size={18} />
             </button>
           </div>
 
-          <div className="flex items-center gap-6 pt-4 text-slate-400">
+          <div className="flex flex-wrap items-center gap-5 pt-2 text-stone-400">
+            <span className="inline-flex items-center gap-2 text-sm">
+              <MapPin size={16} />
+              {PROFILE.location}
+            </span>
             <a 
               href={getSocialUrl('GitHub')} 
               target="_blank" 
               rel="noopener noreferrer" 
               className="hover:text-white transition-colors"
+              aria-label="GitHub"
             >
-              <Github size={24} />
+              <Github size={22} />
             </a>
             <a 
               href={getSocialUrl('LinkedIn')} 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="hover:text-blue-400 transition-colors"
+              className="hover:text-amber-200 transition-colors"
+              aria-label="LinkedIn"
             >
-              <Linkedin size={24} />
+              <Linkedin size={22} />
             </a>
             <a 
               href={`mailto:${PROFILE.email}`} 
-              className="hover:text-primary-400 transition-colors"
+              className="hover:text-emerald-300 transition-colors"
+              aria-label="Email"
             >
-              <Mail size={24} />
+              <Mail size={22} />
             </a>
           </div>
         </div>
 
-        {/* Visual/Image */}
         <div className="order-1 lg:order-2 flex justify-center lg:justify-end relative">
-          <div className="relative w-72 h-72 md:w-96 md:h-96">
-            {/* Abstract Tech Shapes */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-primary-500 to-accent-500 rounded-[2rem] rotate-6 opacity-20 blur-lg animate-pulse"></div>
-            <div className="absolute inset-0 border-2 border-slate-700 rounded-[2rem] -rotate-3 bg-slate-900/50 backdrop-blur-sm"></div>
-            
-            {/* User Profile Image */}
-            <img 
-              src="/image/profile.jpg" 
-              alt="Profile" 
-              className="absolute inset-0 w-full h-full object-cover rounded-[2rem] border border-slate-600 shadow-2xl rotate-0 transition-transform hover:rotate-2 duration-500"
-              onError={(e) => {
-                e.currentTarget.src = "https://picsum.photos/400/400?grayscale"; // Fallback if file not found
-              }}
-            />
-            
-            {/* Floating Badge */}
-            <div className="absolute -bottom-6 -left-6 glass-panel px-6 py-4 rounded-xl border border-slate-700 shadow-xl flex items-center gap-3 animate-bounce" style={{ animationDuration: '3s' }}>
-               <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
-               <span className="text-sm font-mono font-bold text-white">AI/ML & Data Enthusiast</span>
+          <div className="relative w-full max-w-[420px]">
+            <div className="absolute -left-4 top-8 h-full w-full border border-stone-700" />
+            <div className="relative border border-stone-700 bg-stone-950 p-3 shadow-2xl shadow-black/30">
+              <img 
+                src="/image/profile.jpg" 
+                alt="Nutthajet Foythong" 
+                className="aspect-[4/5] w-full object-cover grayscale-[18%] contrast-105"
+                onError={(e) => {
+                  e.currentTarget.src = "https://picsum.photos/420/520?grayscale";
+                }}
+              />
+              <div className="mt-3 flex items-start justify-between gap-4 border-t border-stone-800 pt-3">
+                <div>
+                  <div className="font-mono text-xs uppercase tracking-[0.18em] text-stone-500">Current signal</div>
+                  <div className="mt-1 text-stone-100">RAG + CV + NLP research</div>
+                </div>
+                <Sparkles className="mt-1 text-amber-200" size={20} />
+              </div>
             </div>
           </div>
         </div>

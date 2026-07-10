@@ -1,72 +1,88 @@
 import React from 'react';
 import Section from './Section';
 import { EXPERIENCES } from '../constants';
-import { Briefcase, Calendar, Trophy, Code } from 'lucide-react';
+import { Briefcase, Calendar, Code, FlaskConical, Trophy, type LucideIcon } from 'lucide-react';
+import type { Experience as ExperienceItem } from '../types';
+
+const EXPERIENCE_ICONS: Record<ExperienceItem['type'], LucideIcon> = {
+  Competition: Trophy,
+  Internship: Briefcase,
+  Project: FlaskConical,
+};
 
 const Experience: React.FC = () => {
   return (
-    <Section id="experience" title="Experience" subtitle="My journey through hackathons, competitions, and internships.">
-      <div className="space-y-12 relative">
-        {/* Vertical Line */}
-        <div className="absolute left-4 md:left-8 top-0 bottom-0 w-px bg-slate-800" />
+    <Section
+      id="experience"
+      title="Experience"
+      subtitle="Projects, competitions, and research."
+      className="bg-[#111111]"
+    >
+      <div className="space-y-5">
+        {EXPERIENCES.map((exp, index) => {
+          const Icon = EXPERIENCE_ICONS[exp.type];
 
-        {EXPERIENCES.map((exp) => (
-          <div key={exp.id} className="relative pl-12 md:pl-20 group">
-            {/* Timeline Dot */}
-            <div className="absolute left-2 md:left-6 top-6 w-4 h-4 rounded-full bg-slate-900 border-2 border-primary-500 group-hover:bg-primary-500 transition-colors z-10" />
-            
-            <div className="glass-panel rounded-2xl border-slate-800 hover:border-slate-600 transition-all duration-300 overflow-hidden flex flex-col md:flex-row">
-              
-              {/* Image Section */}
-              {exp.image && (
-                <div className="w-full md:w-1/3 h-48 md:h-auto relative overflow-hidden bg-slate-800">
-                  <div className="absolute inset-0 bg-slate-900/20 group-hover:bg-transparent transition-colors z-10" />
-                  <img 
-                    src={exp.image} 
-                    alt={exp.role} 
-                    onError={(e) => {
-                      // Fallback image if local file is not found
-                      e.currentTarget.src = "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800";
-                    }}
-                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-              )}
-
-              {/* Content Section */}
-              <div className={`p-6 md:p-8 flex-1 ${!exp.image ? 'w-full' : ''}`}>
-                <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4 gap-2">
-                  <div>
-                    <h3 className="text-xl font-bold text-white flex items-center gap-2">
-                       {exp.role} 
-                    </h3>
-                    <div className="flex items-center gap-2 text-primary-400 font-medium mt-1">
-                      {exp.type === 'Competition' ? <Trophy size={16} /> : <Briefcase size={16} />}
-                      <span>{exp.company}</span>
-                    </div>
+          return (
+            <article
+              key={exp.id}
+              className="grid grid-cols-1 lg:grid-cols-[220px_1fr] border border-stone-800 bg-[#171717] transition-colors hover:border-stone-600"
+            >
+              <div className="border-b border-stone-800 lg:border-b-0 lg:border-r p-5 flex lg:flex-col gap-4 justify-between">
+                <div>
+                  <div className="flex items-center gap-2 text-amber-200">
+                    <Icon size={18} />
+                    <span className="font-mono text-xs uppercase tracking-[0.18em]">{exp.type}</span>
                   </div>
-                  <div className="flex items-center gap-2 text-slate-500 text-sm font-mono bg-slate-900/50 px-3 py-1 rounded self-start">
+                  <div className="mt-4 flex items-center gap-2 text-sm text-stone-400">
                     <Calendar size={14} />
-                    {exp.period}
+                    <span className="font-mono">{exp.period}</span>
                   </div>
                 </div>
-                
-                <p className="text-slate-300 mb-6 leading-relaxed">
-                  {exp.description}
-                </p>
-
-                <div className="flex flex-wrap gap-2 mt-auto">
-                  {exp.technologies.map(tech => (
-                    <span key={tech} className="text-xs px-2.5 py-1 rounded-full bg-slate-800 text-slate-400 border border-slate-700 flex items-center gap-1">
-                      <Code size={10} />
-                      {tech}
-                    </span>
-                  ))}
-                </div>
+                <div className="font-mono text-4xl text-stone-800">0{index + 1}</div>
               </div>
-            </div>
-          </div>
-        ))}
+
+              <div className="grid grid-cols-1 md:grid-cols-[1fr_260px]">
+                <div className="p-5 md:p-7">
+                  <div className="flex flex-col gap-2">
+                    <h3 className="text-xl md:text-2xl font-semibold tracking-tight text-stone-50">
+                      {exp.role}
+                    </h3>
+                    <p className="text-sm md:text-base text-emerald-300">{exp.company}</p>
+                  </div>
+
+                  <p className="mt-5 max-w-3xl text-sm md:text-base leading-relaxed text-stone-300">
+                    {exp.description}
+                  </p>
+
+                  <div className="mt-6 flex flex-wrap gap-2">
+                    {exp.technologies.map((tech) => (
+                      <span
+                        key={tech}
+                        className="inline-flex items-center gap-1.5 border border-stone-700 bg-stone-950 px-2.5 py-1 text-xs text-stone-300"
+                      >
+                        <Code size={11} />
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {exp.image && (
+                  <div className="min-h-48 border-t border-stone-800 md:border-t-0 md:border-l bg-stone-950">
+                    <img
+                      src={exp.image}
+                      alt={exp.role}
+                      onError={(e) => {
+                        e.currentTarget.src = 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&q=80&w=800';
+                      }}
+                      className="h-full w-full object-cover opacity-80 transition-opacity hover:opacity-100"
+                    />
+                  </div>
+                )}
+              </div>
+            </article>
+          );
+        })}
       </div>
     </Section>
   );

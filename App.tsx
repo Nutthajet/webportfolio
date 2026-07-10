@@ -10,7 +10,7 @@ import ChatWidget from './components/ChatWidget';
 
 function App() {
   return (
-    <div className="bg-slate-900 min-h-screen selection:bg-primary-500/30 selection:text-white font-sans">
+    <div className="bg-[#111111] min-h-screen selection:bg-amber-200 selection:text-stone-950 font-sans">
       <Navbar />
       
       <main>
