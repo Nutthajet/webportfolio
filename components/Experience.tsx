@@ -14,8 +14,8 @@ const Experience: React.FC = () => {
   return (
     <Section
       id="experience"
-      title="Experience"
-      subtitle="Projects, competitions, and research."
+      title="All Experience"
+      subtitle="Additional projects, competitions, and research experience."
       className="bg-[#111111]"
     >
       <div className="space-y-5">

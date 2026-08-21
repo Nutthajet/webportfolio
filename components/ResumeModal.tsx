@@ -19,12 +19,12 @@ const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => {
       />
 
       {/* Modal Content */}
-      <div className="relative bg-slate-900 w-full max-w-4xl h-[90vh] rounded-2xl flex flex-col shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+      <div className="relative flex h-[90vh] w-full max-w-4xl flex-col overflow-hidden border border-stone-700 bg-[#111111] shadow-2xl animate-in fade-in zoom-in-95 duration-200">
         
         {/* Header Toolbar */}
-        <div className="flex items-center justify-between p-4 border-b border-slate-700 bg-slate-800 no-print">
+        <div className="flex items-center justify-between border-b border-stone-800 bg-stone-950 p-4 no-print">
           <h2 className="text-white font-semibold flex items-center gap-2">
-            <FileText size={18} className="text-primary-500" />
+            <FileText size={18} className="text-amber-200" />
             Resume Preview
           </h2>
           <div className="flex items-center gap-3">
@@ -35,17 +35,18 @@ const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => {
               target="_blank"
               rel="noopener noreferrer"
               download="Nutthajet_Foythong_Resume.pdf"
-              className="flex items-center gap-2 px-4 py-2 bg-primary-600 hover:bg-primary-500 text-white rounded-lg text-sm font-medium transition-colors shadow-lg shadow-primary-900/20"
+              className="flex items-center gap-2 bg-amber-200 px-4 py-2 text-sm font-medium text-stone-950 transition-colors hover:bg-amber-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200"
             >
               <Download size={16} />
               <span className="hidden sm:inline">Download PDF</span>
             </a>
             
-            <div className="w-px h-6 bg-slate-600 mx-1"></div>
+            <div className="mx-1 h-6 w-px bg-stone-700"></div>
 
             <button 
               onClick={onClose}
-              className="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg transition-colors"
+              aria-label="Close resume preview"
+              className="p-2 text-stone-400 transition-colors hover:bg-stone-800 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200"
             >
               <X size={20} />
             </button>
@@ -53,7 +54,7 @@ const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => {
         </div>
 
         {/* Scrollable Resume View - PDF Display */}
-        <div className="flex-1 overflow-hidden bg-slate-900/50">
+        <div className="flex-1 overflow-hidden bg-stone-950/50">
           <iframe
             src={RESUME_URL}
             className="w-full h-full border-0"

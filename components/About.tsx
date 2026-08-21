@@ -4,8 +4,7 @@ import { PROFILE, SOCIALS } from '../constants';
 import ResumeModal from './ResumeModal';
 
 const HERO_STATS = [
-  { value: '14', label: 'Thai news sites' },
-  { value: '10k+', label: 'medical images' },
+  { value: '5', label: 'AI hackathons' },
   { value: '2', label: 'IEEE-linked papers' },
 ];
 
@@ -14,9 +13,9 @@ const About: React.FC = () => {
 
   const getSocialUrl = (platform: string) => SOCIALS.find((social) => social.platform === platform)?.url || '#';
 
-  const scrollToContact = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const scrollToWork = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    const element = document.querySelector('#contact');
+    const element = document.querySelector('#work');
     if (element) {
       const navHeight = 80;
       const elementPosition = element.getBoundingClientRect().top;
@@ -56,7 +55,7 @@ const About: React.FC = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl">
+          <div className="grid max-w-xl grid-cols-1 gap-3 sm:grid-cols-2">
             {HERO_STATS.map(({ value, label }) => (
               <div key={label} className="border border-stone-800 bg-stone-950/45 p-4">
                 <div className="font-mono text-2xl text-amber-200">{value}</div>
@@ -67,11 +66,11 @@ const About: React.FC = () => {
 
           <div className="flex flex-wrap gap-3">
             <a 
-              href="#contact" 
-              onClick={scrollToContact}
+              href="#work" 
+              onClick={scrollToWork}
               className="px-5 py-3 bg-amber-200 hover:bg-amber-100 text-stone-950 font-semibold transition-all flex items-center gap-2 cursor-pointer"
             >
-              Contact <ArrowRight size={18} />
+              View selected work <ArrowRight size={18} />
             </a>
             <button 
               onClick={() => setIsResumeOpen(true)}

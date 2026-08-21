@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageSquare, X, Send, Bot, User, Loader2 } from 'lucide-react';
-import { chatWithResume } from '../services/geminiService';
+import { chatWithResume, hasChatAccess } from '../services/geminiService';
 import { ChatMessage } from '../types';
 
 const createMessage = (role: ChatMessage['role'], text: string): ChatMessage => ({
@@ -22,6 +22,8 @@ const getBubbleClassName = (role: ChatMessage['role']) => (
 );
 
 const ChatWidget: React.FC = () => {
+  if (!hasChatAccess) return null;
+
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>(() => [
     createMessage('model', 'Ask about projects, skills, or research.'),
@@ -71,7 +73,7 @@ const ChatWidget: React.FC = () => {
               <span className="font-semibold text-white">Project Q&A</span>
               <span className="text-xs text-stone-400 border border-stone-700 px-2 py-0.5">resume-based</span>
             </div>
-            <button onClick={() => setIsOpen(false)} className="text-stone-400 hover:text-white transition-colors">
+            <button aria-label="Close project Q&A" onClick={() => setIsOpen(false)} className="text-stone-400 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200">
               <X size={18} />
             </button>
           </div>
@@ -126,6 +128,8 @@ const ChatWidget: React.FC = () => {
       {/* Toggle Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
+        aria-label={isOpen ? 'Close project Q&A' : 'Open project Q&A'}
+        aria-expanded={isOpen}
         className="group relative flex items-center justify-center w-12 h-12 bg-stone-950 border border-stone-700 text-amber-200 shadow-lg shadow-black/30 transition-all duration-300 hover:border-amber-200 active:scale-95"
       >
         {isOpen ? (

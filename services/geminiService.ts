@@ -3,6 +3,7 @@ import { PROFILE, EXPERIENCES, SKILLS, EDUCATION, PAPERS } from '../constants';
 
 const apiKey = process.env.API_KEY || '';
 const ai = apiKey ? new GoogleGenAI({ apiKey }) : null;
+export const hasChatAccess = Boolean(ai);
 
 export const chatWithResume = async (userMessage: string): Promise<string> => {
   if (!ai) {
